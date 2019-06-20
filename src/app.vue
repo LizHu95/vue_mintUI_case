@@ -1,9 +1,12 @@
 <template>
-    <div>
+    <div class="container">
         <header>这是我胡婧做的第一个项目</header>
-        <div class="content">
-            <router-view></router-view>
-        </div>
+
+            <transition>
+                <router-view></router-view>
+            </transition>
+
+
         <nav>
             <router-link to="/home">
                 <div class="nav-item">
@@ -42,48 +45,61 @@
 </script>
 
 <style scoped lang="scss">
-header{
-    background: skyblue;
-    color: white;
-    text-align: center;
-    line-height: 150px;
-    font-size: 60px;
-}
-nav{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    background: white;
-    border-top:1px solid #666;
-    a{
-        width: 25%;
-        position: relative;
-        .nav-item{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color:#aaa;
-            :first-child{
-                font-size: 100px;
-            }
-            :nth-child(2){
-                font-size:40px;
-                line-height: 50px;
-            }
-            :nth-child(3){
-                font-size: 40px;
-                position: absolute;
-                top: 6%;
-                right: 20%;
+    .container {
+        height: 100%;
+        background: white;
+    }
+
+    header {
+        background: skyblue;
+        color: white;
+        text-align: center;
+        line-height: 150px;
+        font-size: 60px;
+    }
+    .v-enter,
+    .v-leave-to{
+        opacity: 0;
+        transform:translateX(100%);
+    }
+    .v-enter-active,
+    .v-leave-active{
+        transition: all 1s ease;
+    }
+    nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #666;
+        a {
+            width: 25%;
+            position: relative;
+            .nav-item {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: #aaa;
+                :first-child {
+                    font-size: 100px;
+                }
+                :nth-child(2) {
+                    font-size: 40px;
+                    line-height: 50px;
+                }
+                :nth-child(3) {
+                    font-size: 40px;
+                    position: absolute;
+                    top: 6%;
+                    right: 20%;
+                }
             }
         }
+        .router-link-active .nav-item {
+            color: skyblue !important;
+        }
     }
-    .router-link-active .nav-item{
-        color:skyblue !important;
-    }
-}
 </style>
